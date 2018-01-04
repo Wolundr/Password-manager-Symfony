@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% block body %}
+    <div class="row mt-4">
+        <div class="col-sm-0 col-lg-2">
+        </div>
+        <div class="col-sm-12 col-lg-8 px-0">
+            <div class=" px-5 pt-sm-1 pt-lg-3">
+
+                {% block input_body %}{% endblock input_body%}
+            </div>
+        </div>
+        <div class="col-sm-0 col-lg-2">
+        </div>
+    </div>
+{% endblock body%}
+{% block javascripts %}{% endblock %}

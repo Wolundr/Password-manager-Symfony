@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="row">
+        <div class="pt-4 px-0 col-lg-12">
+            <div class="page-header"><h1>Your passwords:</h1></div>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Login</th>
+                        <th scope="col">Password</th>
+                        <th>
+                            <div class="btn-group float-right " role="group" aria-label="Basic example">
+
+                                <a href="{{ path('_new') }}" class="btn btn-primary font-weight-bold">Add &#x2b;</a>
+
+                                <a  href="{{ path('fos_user_security_logout') }}" class="btn btn-primary font-weight-bold">Logout</a>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for password in passwords %}
+                    <tr>
+                        <td scope="row">{{ password.name }}</td>
+                        <td>{{ password.login }}</td>
+                        <td>{{ password.password }}</td>
+                        <td>
+                            <a href="{{ path('_delete', { 'id': password.id }) }}">
+                                <input type="button" class="btn btn-danger float-right " value="&#x2716;">
+                            </a>
+                            <a href="{{ path('password_edit', { 'id': password.id }) }}">
+                                <input type="button" class="btn btn-info float-right" value="&#9881;">
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+
+{#<td><a href="{{ path('_show', { 'id': password.id }) }}">{{ password.id }}</a></td>#}
