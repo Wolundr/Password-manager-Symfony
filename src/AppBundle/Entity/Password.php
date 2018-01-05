@@ -134,7 +134,6 @@ class Password
 //        $plainLogin = openssl_decrypt($encoded ,$method , $key, $options=0, $iv);
 //
 //        return $plainLogin;
-
         return $this->login;
     }
 
