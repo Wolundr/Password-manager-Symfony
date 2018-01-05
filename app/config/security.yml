@@ -5,6 +5,7 @@ security:
 
      encoders:
          FOS\UserBundle\Model\UserInterface: bcrypt
+         AppBundle\Entity\Password: bcrypt
 
      role_hierarchy:
           ROLE_ADMIN:       ROLE_USER
@@ -32,6 +33,7 @@ security:
         - { path: ^/reset, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/, role: ROLE_USER }
+        - { path: "/{YOUR-PREFIX}/profile/confirm-email-update/{token}", roles: IS_AUTHENTICATED_REMEMBERED }
 
 #        # disables authentication for assets and the profiler, adapt it according to your needs
 #        dev:

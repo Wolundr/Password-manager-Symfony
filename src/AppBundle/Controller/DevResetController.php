@@ -14,7 +14,7 @@ class DevResetController extends Controller
      */
     public function resetAction(Request $request)
     {
-        $resetForm = $this->createForm('AppBundle\Form\UserResetType');
+        $resetForm = $this->createForm('AppBundle\Form\DevUserResetType');
         $resetForm->handleRequest($request);
 
         if ($resetForm->isSubmitted() && $resetForm->isValid()) {

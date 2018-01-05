@@ -54,7 +54,7 @@ class PasswordController extends Controller
 
         return $this->render('password/new.html.twig', array(
             'password' => $password,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ));
     }
 

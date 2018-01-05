@@ -2,7 +2,7 @@
 {% block body %}
 
     <div class="row">
-        <div class="pt-4 px-0 col-lg-12">
+        <div class="pt-4 col-lg-12">
             <div class="page-header"><h1>Your passwords:</h1></div>
             <table class="table table-striped">
                 <thead class="thead-dark">
@@ -10,10 +10,9 @@
                         <th scope="col">Name</th>
                         <th scope="col">Login</th>
                         <th scope="col">Password</th>
-                        <th>
-                            <div class="btn-group float-right " role="group" aria-label="Basic example">
-
-                                <a href="{{ path('_new') }}" class="btn btn-primary font-weight-bold">Add &#x2b;</a>
+                        <th scope="col">
+                            <div class="btn-group float-right mr-0 " role="group">
+                                <a href="{{ path('_new') }}" class="btn btn-primary font-weight-bold">&#x2b;</a>
 
                                 <a  href="{{ path('fos_user_security_logout') }}" class="btn btn-primary font-weight-bold">Logout</a>
                             </div>
@@ -38,9 +37,17 @@
                 {% endfor %}
                 </tbody>
             </table>
+            <div class="btn-group float-right mr-3 ">
+                <a href="{{ path('_new') }}" class="btn btn-primary font-weight-bold">Add &#x2b;</a>
+            </div>
         </div>
     </div>
 {% endblock %}
 
 
-{#<td><a href="{{ path('_show', { 'id': password.id }) }}">{{ password.id }}</a></td>#}
+{#<div class="btn-group float-right mr-3 " role="group">#}
+
+    {#<a href="{{ path('_new') }}" class="btn btn-primary font-weight-bold">Add &#x2b;</a>#}
+
+    {#<a  href="{{ path('fos_user_security_logout') }}" class="btn btn-primary font-weight-bold">Logout</a>#}
+{#</div>#}
