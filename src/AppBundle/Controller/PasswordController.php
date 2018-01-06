@@ -17,6 +17,7 @@ class PasswordController extends Controller
     public function indexAction()
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
+
         $em = $this->getDoctrine()->getManager();
         $userId = $this->getUser()->getId();
 
@@ -41,12 +42,11 @@ class PasswordController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($password);
-
             $userId = $this->getUser()->getId();
             $password->setUserId($userId);
 
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($password);
             $em->flush();
 
             return $this->redirectToRoute('_index');
@@ -66,6 +66,7 @@ class PasswordController extends Controller
     public function editAction(Request $request, Password $password)
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
+
         $userId = $this->getUser()->getId();
         $ownerId = $password->getUserId();
         if($userId != $ownerId){

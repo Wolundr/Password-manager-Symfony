@@ -20,9 +20,16 @@ class DevUserResetType extends AbstractType
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',
                 'invalid_message' => 'fos_user.password.mismatch',
-                'options' => array('translation_domain' => 'FOSUserBundle'),
-                'first_options' => array('label' => 'form.password','attr' => array('class' => 'form-control')),
-                'second_options' => array('label' => 'form.password_confirmation', 'attr' => array('class' => 'form-control')),
+                'options' => array(
+                    'translation_domain' => 'FOSUserBundle'),
+                'first_options' => array(
+                    'label' => 'form.password',
+                    'attr' => array(
+                        'class' => 'form-control')),
+                'second_options' => array(
+                    'label' => 'form.password_confirmation',
+                    'attr' => array(
+                        'class' => 'form-control')),
             ));
     }
 

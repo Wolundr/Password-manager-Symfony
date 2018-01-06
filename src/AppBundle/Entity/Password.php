@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Password
- *
+ * @ORM\Entity @ORM\EntityListeners({"AppBundle\Doctrine\PasswordListener"})
  * @ORM\Table(name="password")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PasswordRepository")
  */
@@ -127,13 +127,7 @@ class Password
      */
     public function getLogin()
     {
-//        $encoded = $this->login;
-//        $method = "AES-128-CBC";
-//        $key = "key";
-//        $iv = "INITIALIZATIONVE";
-//        $plainLogin = openssl_decrypt($encoded ,$method , $key, $options=0, $iv);
-//
-//        return $plainLogin;
+
         return $this->login;
     }
 
@@ -157,13 +151,6 @@ class Password
      */
     public function getPassword()
     {
-//        $encoded = $this->password;
-//        $method = "AES-128-CBC";
-//        $key = "key";
-//        $iv = "INITIALIZATIONVE";
-//        $plainPassword = openssl_decrypt($encoded ,$method , $key, $options=0, $iv);
-//
-//        return $plainPassword;
 
         return $this->password;
     }

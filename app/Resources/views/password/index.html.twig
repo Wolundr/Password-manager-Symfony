@@ -7,10 +7,10 @@
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Login</th>
-                        <th scope="col">Password</th>
-                        <th scope="col">
+                        <th>Name</th>
+                        <th>Login</th>
+                        <th>Password</th>
+                        <th>
                             <div class="btn-group float-right mr-0 " role="group">
                                 <a href="{{ path('_new') }}" class="btn btn-primary font-weight-bold">&#x2b;</a>
 
@@ -22,7 +22,7 @@
                 <tbody>
                 {% for password in passwords %}
                     <tr>
-                        <td scope="row">{{ password.name }}</td>
+                        <td>{{ password.name }}</td>
                         <td>{{ password.login }}</td>
                         <td>{{ password.password }}</td>
                         <td>
@@ -43,7 +43,6 @@
         </div>
     </div>
 {% endblock %}
-
 
 {#<div class="btn-group float-right mr-3 " role="group">#}
 
