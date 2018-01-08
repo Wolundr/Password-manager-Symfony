@@ -24,9 +24,7 @@ class User extends BaseUser
      */
     protected $id;
 
-    /**f
-     * Get id
-     *
+    /**
      * @return integer 
      */
     public function getId()

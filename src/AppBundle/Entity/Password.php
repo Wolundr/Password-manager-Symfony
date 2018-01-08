@@ -7,9 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Password
- * @ORM\Entity @ORM\EntityListeners({"AppBundle\Doctrine\PasswordListener"})
  * @ORM\Table(name="password")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PasswordRepository")
+ * @ORM\Entity @ORM\EntityListeners({"AppBundle\Listeners\Doctrine\PasswordListener"})
  */
 class Password
 {
@@ -52,8 +52,13 @@ class Password
     private $password;
 
     /**
-     * Get id
+     * @var string
      *
+     * @ORM\Column(name="iv", type="string", length=255)
+     */
+    private $IV;
+
+    /**
      * @return integer 
      */
     public function getId()
@@ -62,8 +67,6 @@ class Password
     }
 
     /**
-     * Set userId
-     *
      * @param integer $userId
      * @return Password
      */
@@ -75,8 +78,6 @@ class Password
     }
 
     /**
-     * Get userId
-     *
      * @return integer 
      */
     public function getUserId()
@@ -85,8 +86,6 @@ class Password
     }
 
     /**
-     * Set name
-     *
      * @param string $name
      * @return Password
      */
@@ -98,8 +97,6 @@ class Password
     }
 
     /**
-     * Get name
-     *
      * @return string 
      */
     public function getName()
@@ -108,8 +105,6 @@ class Password
     }
 
     /**
-     * Set login
-     *
      * @param string $login
      * @return Password
      */
@@ -121,8 +116,6 @@ class Password
     }
 
     /**
-     * Get login
-     *
      * @return string 
      */
     public function getLogin()
@@ -132,8 +125,6 @@ class Password
     }
 
     /**
-     * Set password
-     *
      * @param string $password
      * @return Password
      */
@@ -145,8 +136,6 @@ class Password
     }
 
     /**
-     * Get password
-     *
      * @return string 
      */
     public function getPassword()
@@ -154,5 +143,26 @@ class Password
 
         return $this->password;
     }
+
+
+    /**
+     * @param string $IV
+     * @return Password
+     */
+    public function setIV($IV)
+    {
+        $this->IV = $IV;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getIV()
+    {
+        return $this->IV;
+    }
+
 
 }

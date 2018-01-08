@@ -4,12 +4,6 @@ parameters:
     #parameter_name: value
 
 services:
-#     app.doctrine.hash_password_listener:
-#         class: AppBundle\Doctrine\PasswordsTableListener
-#         autowire: true
-#         arguments: ['@security.encoder_factory']
-#         tags:
-#             - { name: doctrine.event_subscriber }
 
     #service_name:
     #    class: AppBundle\Directory\ClassName

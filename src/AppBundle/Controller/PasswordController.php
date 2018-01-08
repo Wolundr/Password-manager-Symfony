@@ -16,8 +16,6 @@ class PasswordController extends Controller
      */
     public function indexAction()
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
         $em = $this->getDoctrine()->getManager();
         $userId = $this->getUser()->getId();
 
@@ -34,8 +32,6 @@ class PasswordController extends Controller
      */
     public function newAction(Request $request)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
         $password = new Password();
         $form = $this->createForm('AppBundle\Form\PasswordType', $password);
         $form->handleRequest($request);
@@ -44,6 +40,10 @@ class PasswordController extends Controller
 
             $userId = $this->getUser()->getId();
             $password->setUserId($userId);
+
+            $in = utf8_encode(random_bytes(16));
+            $iv = strlen($in) > 16 ? substr($in,0,16) : $in;
+            $password->setIV($iv);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($password);
@@ -60,13 +60,11 @@ class PasswordController extends Controller
 
 
     /**
-     * @Route("/{id}/password_edit", name="password_edit")
+     * @Route("/password_edit={id}", name="password_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Password $password)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
         $userId = $this->getUser()->getId();
         $ownerId = $password->getUserId();
         if($userId != $ownerId){
@@ -77,6 +75,11 @@ class PasswordController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $in = utf8_encode(random_bytes(16));
+            $iv = strlen($in) > 16 ? substr($in,0,16) : $in;
+            $password->setIV($iv);
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('_index');
@@ -89,12 +92,11 @@ class PasswordController extends Controller
     }
 
     /**
-     * @Route("/{id}/delete", name="_delete")
+     * @Route("/delete={id}", name="_delete")
      * @Method({"GET"})
      */
     public function deleteAction($id)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
         $em = $this->getDoctrine()->getManager();
         $password = $em->getRepository('AppBundle:Password')->find($id);
 
@@ -110,42 +112,3 @@ class PasswordController extends Controller
         return $this->redirectToRoute('_index');
     }
 }
-
-//$user = $this->container->get('security.context')->getToken()->getUser();
-//$user->getId();
-
-///**
-// * Password controller.
-// *
-// * @Route("{userId}")
-// */
-
-
-//return $this->redirectToRoute('_show', array('id' => $password->getId()));
-
-///**
-// * Creates a form to delete a password entity.
-// *
-// * @param Password $password The password entity
-// *
-// * @return \Symfony\Component\Form\Form The form
-// */
-//private function createDeleteForm(Password $password)
-//{
-//    return $this->createFormBuilder()
-//        ->setAction($this->generateUrl('_delete', array('id' => $password->getId())))
-//        ->setMethod('DELETE')
-//        ->getForm()
-//        ;
-//}
-
-///**
-// * @Route("/{id}", name="_show")
-// * @Method("GET")
-// */
-//public function showAction(Password $password)
-//{
-//    return $this->render('password/show.html.twig', array(
-//        'password' => $password,
-//    ));
-//}

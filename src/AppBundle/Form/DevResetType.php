@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DevUserResetType extends AbstractType
+class DevResetType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -19,17 +19,20 @@ class DevUserResetType extends AbstractType
             ))
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',
-                'invalid_message' => 'fos_user.password.mismatch',
                 'options' => array(
                     'translation_domain' => 'FOSUserBundle'),
                 'first_options' => array(
                     'label' => 'form.password',
                     'attr' => array(
-                        'class' => 'form-control')),
+                        'class' => 'form-control',
+                        'error_bubbling' => true)),
                 'second_options' => array(
                     'label' => 'form.password_confirmation',
                     'attr' => array(
                         'class' => 'form-control')),
+                'invalid_message' => "password.not_match",
+                'error_bubbling' => true,
+                'required' => true
             ));
     }
 
